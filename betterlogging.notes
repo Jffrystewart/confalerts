@@ -1,0 +1,7 @@
+If confluence services go down, email alerts via ssmtp to either outlook or perhaps slack. 
+
+create a script that has better logging for jira/confluence failures io
+
+
+
+
