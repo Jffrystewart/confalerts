@@ -42,11 +42,11 @@ fi
 remote_init(){
 	
 	date  echo  "Status : $VM is up " >> $LOGFILE; echo 
-	ssh -i ~/.ssh/server1 root@$VM # change variable to conflunce server when ready
-	echo "Checking confluence services.."; echo
-	## TODO :: 
-# 	systemctl status  ## determine best way to confirm confluence services is runniing 
-			  ## Check java services, confluence/status url links, etc
+	ssh -i ~/.ssh/server1 root@$VM 	'echo "Checking confluence services.."; echo ; test'
+					 ## change variable to conflunce server when ready			
+				 	 ## TODO :: 
+ 	#systemctl status 		 ## determine best way to confirm confluence services is runniing 
+			 		 ## Check java services, confluence/status url links, etc
 	
 
 
@@ -63,6 +63,8 @@ check(){
 	done
 }
 
+
 remote_init
 check
+
 exit 0; 
