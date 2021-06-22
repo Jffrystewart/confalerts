@@ -13,7 +13,8 @@ ROOT_UID=0
 E_NONROOT=87
 VM=192.168.122.150
 LOGFILE=/home/mcbeeff/alertlog.txt
-
+email=jeff.sysadm@gmail.com
+passwd=UnitaryInsults$$%%#
 
 if [ $UID -ne $ROOT_UID ] 
 then
@@ -42,7 +43,7 @@ fi
 remote_init(){
 	
 	date; echo  "Status : $VM is up " >> $LOGFILE; echo 
-	ssh -i ~/.ssh/server1 root@$VM 	'echo "Checking confluence services.."; echo ; test'
+	ssh -i ~/.ssh/server1 root@$VM 	'echo test'
 					 ## change variable to conflunce server when ready			
 				 	 ## TODO :: 
  	#systemctl status 		 ## determine best way to confirm confluence services is runniing 
@@ -53,19 +54,29 @@ remote_init(){
 
 
 }
-check(){
-	for file in $LOGFILE
-	do
-		if [ ! -e "$file" ] 
-		then
-			touch /home/mcbeeff/aertlog.txt ## checking if our log file exists on machine, if not then
-			echo "log file created"         ## create one
-		fi
-	done
+
+remote_server(){
+	let email=$(echo "Checking confluence services.."; echo)
+	let bool=$(echo $?)
+	if [ $bool -ne 0 ]
+	then
+		PYTHON_ARG="$1" python3 - <<END
+		import smtplib
+		user=jeff.sysadm@gmail.com
+		passwd=UnitaryInsults$$%%#
+		smtpObj = smtp.SMT_SSL(smtp.gmail.com, 465 )
+		smtpObj.ehlo
+		smtpObj.starttls()
+		smtpObj.login(user, passwd)
+		smtpObj.sendmail(user, 'jffrystwrt@gmail.com' , 'PYTHON_ARG')
+
+END
+	fi
+
 }
 
 
+
 remote_init
-check
 
 exit 0; 
