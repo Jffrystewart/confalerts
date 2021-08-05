@@ -11,10 +11,10 @@
 ## VARIABLES ## 
 ROOT_UID=0
 E_NONROOT=87
-VM=192.168.122.150
+VM=192.168.*.*
 LOGFILE=/home/mcbeeff/alertlog.txt
-email=jeff.sysadm@gmail.com
-passwd=UnitaryInsults$$%%#
+email=email
+passwd=somepassord
 
 if [ $UID -ne $ROOT_UID ] 
 then
