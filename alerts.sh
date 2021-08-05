@@ -14,7 +14,7 @@ E_NONROOT=87
 VM=192.168.*.*
 LOGFILE=/home/mcbeeff/alertlog.txt
 email=email
-passwd=somepassord
+passwd=somepassword
 
 if [ $UID -ne $ROOT_UID ] 
 then
@@ -62,8 +62,8 @@ remote_server(){
 	then
 		PYTHON_ARG="$1" python3 - <<END
 		import smtplib
-		user=jeff.sysadm@gmail.com
-		passwd=UnitaryInsults$$%%#
+		user=email
+		passwd=somepassword
 		smtpObj = smtp.SMT_SSL(smtp.gmail.com, 465 )
 		smtpObj.ehlo
 		smtpObj.starttls()
